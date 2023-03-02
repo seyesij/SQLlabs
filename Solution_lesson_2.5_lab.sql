@@ -18,13 +18,15 @@ FROM sakila.film;
 SELECT MAX(length) AS 'max_duration'
 FROM sakila.film;
 
--- 4. average movie duration expressed in format (hours, minutes)
+-- 4. what's the average movie duration expressed in format (hours, minutes)
+SELECT SEC_TO_TIME(AVG(length)*60) AS 'average_movie_duration' 
+FROM sakila.film;
 
--- 5. distinct actors' last names?
+-- 5. distinct actors' last names
 SELECT COUNT(DISTINCT last_name)
 FROM sakila.actor;
 
--- 6. how many days has the company been operating (check DATEDIFF() function)?
+-- 6. how many days has the company been operating (check DATEDIFF() function)
 SELECT DATEDIFF(MAX(last_update), MIN(rental_date)) AS DateDiff
 FROM sakila.rental;
 
@@ -53,7 +55,7 @@ WHERE title LIKE '%ARMAGEDDON%';
 SELECT * FROM sakila.film
 WHERE title LIKE '%APOLLO';
 
--- 12. 10 the longest films
+-- 12. Get 10 the longest films
 SELECT title, length FROM sakila.film
 WHERE length BETWEEN 175 AND 185
 ORDER BY length desc;
@@ -66,13 +68,4 @@ LIMIT 10;
 -- 13. how many films include Behind the Scenes content?
 SELECT COUNT(special_features) FROM sakila.film
 WHERE special_features LIKE '%Behind the Scenes%';
-
-
-
-
-
-
-
-
-
 
